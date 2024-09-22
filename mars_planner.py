@@ -15,7 +15,7 @@
 
 from copy import deepcopy
 
-from routefinder import read_mars_graph, map_state, sld, a_star
+from routefinder import read_mars_graph, map_state, sld, a_star, h1
 from search_algorithms import breadth_first_search, depth_first_search
 from Graph import Graph
 
@@ -192,4 +192,5 @@ if __name__ == "__main__":
         return state.is_goal()
     start_state = map_state(location="8,8", mars_graph=read_mars_graph("marsmap"))
     a_star(start_state, sld, complete)
+    a_star(start_state, h1, complete)
 
