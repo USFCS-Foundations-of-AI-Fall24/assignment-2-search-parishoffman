@@ -1,5 +1,8 @@
 from queue import PriorityQueue
 
+from Graph import Graph, Node, Edge
+
+
 class map_state() :
     ## f = total estimated cost
     ## g = cost so far
@@ -50,4 +53,15 @@ def sld(state) :
 ## you implement this. Open the file filename, read in each line,
 ## construct a Graph object and assign it to self.mars_graph().
 def read_mars_graph(filename):
-    pass
+    new_graph = Graph()
+    file = open(filename)
+    lines = file.readlines()
+    data = [(source, destinations.split()) for line in lines for source, destinations in
+            [line.split(':')]]
+
+    for tuple in data:
+        source_node, destinations = Node(tuple[0]), tuple[1]
+        for destination in destinations:
+            dest_node = Node(destination)
+            new_graph.add_edge(Edge(source_node, dest_node))
+    return new_graph
