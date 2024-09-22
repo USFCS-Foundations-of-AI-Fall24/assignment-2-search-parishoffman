@@ -15,7 +15,7 @@
 
 from copy import deepcopy
 
-from routefinder import read_mars_graph
+from routefinder import read_mars_graph, map_state, sld, a_star
 from search_algorithms import breadth_first_search, depth_first_search
 from Graph import Graph
 
@@ -144,10 +144,10 @@ def run_program(search_algorithm, action_list, state, goal_fn, limit=-1) :
         search_algorithm(state, action_list, goal_fn)
 
 if __name__ == "__main__":
-    read_mars_graph("marsmap")
-
-
-
+    def complete(state) :
+        return state.is_goal()
+    start_state = map_state(location="8,8", mars_graph=read_mars_graph("marsmap"))
+    a_star(start_state, sld, complete)
     # action_list = [
     #                move_to_sample, extract_sample,
     #                pick_up_sample, move_to_station, drop_sample,

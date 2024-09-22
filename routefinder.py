@@ -38,8 +38,15 @@ class map_state() :
 def a_star(start_state, heuristic_fn, goal_test, use_closed_list=True) :
     search_queue = PriorityQueue()
     closed_list = {}
-    search_queue.put(start_state)
+    search_queue.put((start_state, "start"))
     ## you do the rest.
+
+    while search_queue.qsize() > 0:
+        next_state = search_queue.get()
+
+        if goal_test(next_state[0]) :
+            ptr = next_state[0]
+            while
 
 
 ## default heuristic - we can use this to implement uniform cost search
