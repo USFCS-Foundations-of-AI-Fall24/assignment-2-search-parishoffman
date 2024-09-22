@@ -1,6 +1,6 @@
 from queue import PriorityQueue
-
 from Graph import Graph, Node, Edge
+import math
 
 
 class map_state() :
@@ -38,16 +38,47 @@ class map_state() :
 def a_star(start_state, heuristic_fn, goal_test, use_closed_list=True) :
     search_queue = PriorityQueue()
     closed_list = {}
-    search_queue.put((start_state, "start"))
+    search_queue.put(start_state)
     ## you do the rest.
+    states = 0
 
-    while search_queue.qsize() > 0:
+    if use_closed_list :
+        closed_list[start_state] = True
+
+    while search_queue.qsize() > 0 :
+        states += 1
         next_state = search_queue.get()
-
-        if goal_test(next_state[0]) :
-            ptr = next_state[0]
-            while
-
+        # print("Next state: ", next_state)
+        if goal_test(next_state):
+            print("Goal found")
+            print("States: ", states)
+            # print(next_state)
+            # ptr = next_state
+            # while ptr is not None :
+            #     ptr = ptr.prev
+            #     # print(ptr)
+            return
+        else :
+            # successors = next_state.successors(action_list)
+            successors = []
+            heuristic = heuristic_fn(next_state)
+            for edge in next_state.mars_graph.get_edges(Node(next_state.location)) :
+                successors.append(
+                    map_state(
+                        g=next_state.g + 1,
+                        h=heuristic,
+                        location=edge.dest.value,
+                        mars_graph=next_state.mars_graph,
+                        prev_state=next_state,
+                    )
+                )
+            if use_closed_list :
+                successors = [item for item in successors
+                                    if item not in closed_list]
+                for s in successors :
+                    closed_list[s] = True
+            for succ in successors :
+             search_queue.put(succ)
 
 ## default heuristic - we can use this to implement uniform cost search
 def h1(state) :
@@ -55,7 +86,8 @@ def h1(state) :
 
 ## you do this - return the straight-line distance between the state and (1,1)
 def sld(state) :
-    sqt(a^ + b2)
+    data = state.location.split(",")
+    return math.sqrt(math.pow(1 - int(data[0]), 2) + math.pow(1 - int(data[1]), 2))
 
 ## you implement this. Open the file filename, read in each line,
 ## construct a Graph object and assign it to self.mars_graph().
