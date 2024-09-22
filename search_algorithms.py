@@ -32,42 +32,6 @@ def breadth_first_search(startState, action_list, goal_test, use_closed_list=Tru
             search_queue.extend(successors)
 
 ### Note the similarity to BFS - the only difference is the search queue
-
-## use the limit parameter to implement depth-limited search
-# def depth_first_search(startState, action_list, goal_test, use_closed_list=True, limit=0) :
-#     search_queue = deque()
-#     closed_list = {}
-#     states = 0
-#
-#     search_queue.append((startState,"start"))
-#     if use_closed_list :
-#         closed_list[startState] = True
-#     while len(search_queue) > 0 :
-#         states += 1
-#         ## this is a (state, "action") tuple
-#         next_state = search_queue.pop()
-#         print("Current State: ", next_state[1])
-#         print("goal_test(next_state[0]): ", goal_test(next_state[0]))
-#         if goal_test(next_state[0]):
-#             print("Goal found")
-#             print("States: ", states)
-#             print(next_state)
-#             ptr = next_state[0]
-#             while ptr is not None :
-#                 ptr = ptr.prev
-#                 print(ptr)
-#             print("States: ", states)
-#             return next_state
-#         else :
-#             successors = next_state[0].successors(action_list)
-#             if use_closed_list :
-#                 successors = [item for item in successors
-#                                     if item[0] not in closed_list]
-#                 for s in successors :
-#                     closed_list[s[0]] = True
-#             search_queue.extend(successors)
-
-
 ## use the limit parameter to implement depth-limited search
 def depth_first_search(startState, action_list, goal_test, use_closed_list=True, limit=0) -> (any, int, bool) :
     search_queue = deque()
@@ -98,5 +62,3 @@ def depth_first_search(startState, action_list, goal_test, use_closed_list=True,
                 for s in successors :
                     closed_list[s[0]] = True
             search_queue.extend(successors)
-
-## add iterative deepening search here

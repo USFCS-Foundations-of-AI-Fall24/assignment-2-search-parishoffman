@@ -109,14 +109,14 @@ def drop_tool(state) :
 
 def pick_up_sample(state) :
     r2 = deepcopy(state)
-    if sample_extract_goal(state) and sample_goal(state) :
+    if state.sample_extracted and state.holding_sample :
         r2.holding_sample = True
     r2.prev = state
     return r2
 
 def drop_sample(state) :
     r2 = deepcopy(state)
-    if sample_extract_goal(state) and station_goal(state) :
+    if state.sample_extracted and state.holding_sample :
         r2.holding_sample = False
     r2.prev = state
     return r2
@@ -137,25 +137,6 @@ def sample_goal(state) :
 def station_goal(state) :
     return state.loc == "station"
 
-# Other goal functions
-def sample_extract_goal(state) :
-    return state.sample_extracted
-
-def charged_goal(state) :
-    return state.charged
-
-def holding_tool_goal(state) :
-    return state.holding_tool
-
-def dropped_tool_goal(state) :
-    return not state.holding_tool
-
-def holding_sample_goal(state) :
-    return state.holding_sample
-
-def extracted_sample_goal(state) :
-    return sample_extract_goal(state) and dropped_tool_goal(state) and holding_sample_goal(state)
-
 def mission_complete(state) :
     return state.loc == "battery" and state.charged == True and state.sample_extracted == True
 
@@ -168,3 +149,5 @@ if __name__ == "__main__":
 
     s = RoverState()
     depth_first_search(s, action_list, mission_complete)
+    s = RoverState()
+    breadth_first_search(s, action_list, mission_complete)
