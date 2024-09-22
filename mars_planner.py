@@ -157,7 +157,7 @@ def extracted_sample_goal(state) :
     return sample_extract_goal(state) and dropped_tool_goal(state) and holding_sample_goal(state)
 
 def mission_complete(state) :
-    return battery_goal(state) and charged_goal(state) and sample_extract_goal(state)
+    return state.loc == "battery" and state.charged == True and state.sample_extracted == True
 
 if __name__ == "__main__":
     action_list = [
@@ -167,4 +167,4 @@ if __name__ == "__main__":
                 ]
 
     s = RoverState()
-    print(depth_first_search(s, action_list, mission_complete)[1])
+    depth_first_search(s, action_list, mission_complete)
