@@ -136,7 +136,6 @@ def station_goal(state) :
 def mission_complete(state) :
     return state.loc == "battery" and state.charged == True and state.sample_extracted == True
 
-
 def run_program(search_algorithm, action_list, state, goal_fn, limit=-1) :
     if limit != -1 :
         search_algorithm(state, action_list, goal_fn, limit=limit)

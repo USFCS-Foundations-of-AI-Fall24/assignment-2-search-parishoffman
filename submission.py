@@ -1,5 +1,7 @@
 from mapcoloring import solve_antenna
 from mars_planner import *
+
+# Name: Paris Hoffman
 if __name__ == "__main__" :
     action_list = [
                    move_to_sample, extract_sample,
