@@ -35,16 +35,16 @@ model.Add(ContraCosta != Marin)
 
 status = solver.Solve(model)
 
-if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
-    print("SF: %s" % colors[solver.Value(SF)])
-    print("Alameda: %s" % colors[solver.Value(Alameda)])
-    print("Marin: %s" % colors[solver.Value(Marin)])
-    print("Contra Costa: %s" % colors[solver.Value(ContraCosta)])
-    print("Solano: %s" % colors[solver.Value(Solano)])
-    print("Sonoma: %s" % colors[solver.Value(Sonoma)])
-    print("Santa Clara: %s" % colors[solver.Value(SantaClara)])
-    print("San Mateo: %s" % colors[solver.Value(SanMateo)])
-    print("Napa: %s" % colors[solver.Value(Napa)])
+# if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
+     # print("SF: %s" % colors[solver.Value(SF)])
+    # print("Alameda: %s" % colors[solver.Value(Alameda)])
+    # print("Marin: %s" % colors[solver.Value(Marin)])
+    # print("Contra Costa: %s" % colors[solver.Value(ContraCosta)])
+    # print("Solano: %s" % colors[solver.Value(Solano)])
+    # print("Sonoma: %s" % colors[solver.Value(Sonoma)])
+    # print("Santa Clara: %s" % colors[solver.Value(SantaClara)])
+    # print("San Mateo: %s" % colors[solver.Value(SanMateo)])
+    # print("Napa: %s" % colors[solver.Value(Napa)])
 
 
 def solve_antenna() :
@@ -90,6 +90,3 @@ def solve_antenna() :
         print("Antenna7: %s" % frequencies[solver.Value(Antenna7)])
         print("Antenna8: %s" % frequencies[solver.Value(Antenna8)])
         print("Antenna9: %s" % frequencies[solver.Value(Antenna9)])
-
-if __name__ == "__main__":
-    solve_antenna()
